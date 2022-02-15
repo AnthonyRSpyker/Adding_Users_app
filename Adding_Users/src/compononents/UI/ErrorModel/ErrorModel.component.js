@@ -5,7 +5,10 @@ import Button from '../Button/Button.component'
 
 import classes from './ErrorModel-style.module.css'
 const ErrorModel = props => {
-    return <Card className={classes.modal}>
+    return (
+    <div>
+        <div className={classes.backdrop} />
+    <Card className={classes.modal}>
         <header className={classes.header}>
             <h2>
                 {props.title}
@@ -18,6 +21,8 @@ const ErrorModel = props => {
             <Button>Okie dokie</Button>
         </footer>
     </Card>
+    </div>
+    )
 }
 
 export default ErrorModel

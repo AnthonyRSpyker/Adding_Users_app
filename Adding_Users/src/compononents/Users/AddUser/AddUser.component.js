@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 
 import Card from '../../UI/Card/Card.component'
 import Button from '../../UI/Button/Button.component'
+import ErrorModel from '../../UI/ErrorModel/ErrorModel.component';
+
 import classes from './AddUser-styles.module.css'
 
 const AddUser = (props) => {
@@ -36,6 +38,8 @@ const AddUser = (props) => {
     }
 
     return (
+    <div>
+    <ErrorModel title='an error occured' message='something went wrong' />
     <Card className={classes.input}>    
     <form onSubmit={addUserHandler}>
         <label htmlFor="username">UserName</label>
@@ -45,6 +49,7 @@ const AddUser = (props) => {
         <Button type="submit">Add User</Button>
     </form>
     </Card>
+    </div>
     )
 };
 
