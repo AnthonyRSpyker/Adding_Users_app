@@ -1,28 +1,49 @@
-import React from 'react'
+import React from "react";
+import ReactDOM from "react-dom";
 
-import Card from '../Card/Card.component'
-import Button from '../Button/Button.component'
+import Card from "../Card/Card.component";
+import Button from "../Button/Button.component";
 
-import classes from './ErrorModel-style.module.css'
-const ErrorModel = props => {
-    return (
-    <div>
-        <div className={classes.backdrop} onClick={props.onConfirm}/>
+import classes from "./ErrorModel-style.module.css";
+
+const Backdrop = (props) => {
+  return <div className={classes.backdrop} onClick={props.onConfirm} />;
+};
+
+const ModalOverlay = (props) => {
+  return (
     <Card className={classes.modal}>
-        <header className={classes.header}>
-            <h2>
-                {props.title}
-            </h2>
-        </header>
-        <div className={classes.content}>
-            <p>{props.message}</p>
-        </div>
-        <footer className={classes.actions}>
-            <Button onClick={props.onConfirm}>Okie dokie</Button>
-        </footer>
-    </Card> 
-    </div>
-    )
-}
+      <header className={classes.header}>
+        <h2>{props.title}</h2>
+      </header>
+      <div className={classes.content}>
+        <p>{props.message}</p>
+      </div>
+      <footer className={classes.actions}>
+        <Button onClick={props.onConfirm}>Okie dokie</Button>
+      </footer>
+    </Card>
+  );
+};
 
-export default ErrorModel
+const ErrorModel = (props) => {
+  return (
+    <React.Fragment>
+      {ReactDOM.createPortal(
+        <Backdrop onConfirm={props.onConfirm} />,
+        document.getElementById("backdrop-root")
+      )}
+
+      {ReactDOM.createPortal(
+          <ModalOverlay
+            title={props.title}
+            message={props.message}
+            onConfirm={props.onConfirm}
+          />,
+        document.getElementById("overlay-root")
+        )}
+    </React.Fragment>
+  );
+};
+
+export default ErrorModel;
