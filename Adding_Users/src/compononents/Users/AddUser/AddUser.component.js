@@ -20,6 +20,8 @@ const AddUser = (props) => {
 
     const enteredUserName = nameInputRef.current.value
     const enteredUserAge = ageInputRef.current.value
+    //could use these to effect the values. they would be uncontrolled components.
+    //their internal state is not controlled by react.
 
     if (enteredUserName.trim().length === 0 || enteredAge.trim().length === 0) {
       setError({
